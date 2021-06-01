@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    {{ username }}
+{% endblock %}
+
+{% block css_files %}
+    <link href="{% static '/user/user.css' %}" rel="stylesheet" />
+{% endblock %} 
+
+{% block content %}
+    <main>
+        <h1>{{ username }}</h1>
+
+        {% if tags|length > 0 %}
+            <section id="tags">
+                {% for tag in tags %}
+                    <div class="tag {{tag.type}}">
+                        {{tag.title}}
+                    </div>
+                {% endfor %}
+            </section>
+        {% endif %}
+
+        <section class="ratings">
+            <div class="rating rapid">
+                <div class="rating_value">
+                    {{ rapid_rating }}
+                </div>
+                <div class="rating_name">
+                    RAPID
+                </div>
+            </div>
+        </section>
+        <br>
+        <section>
+            <b>Białymi:</b><br>
+            zwycięstwa: {{ white.wins }}<br>
+            remisy: {{ white.draws }}<br>
+            porażki: {{ white.loses }}
+        </section>
+        <br>
+        <section>
+            <b>Czarnymi:</b><br>
+            zwycięstwa: {{ black.wins }}<br>
+            remisy: {{ black.draws }}<br>
+            porażki: {{ black.loses }}
+        </section>
+        <br>
+        <section>
+            <b>Debiuty:</b><br>
+            <table border=1>
+                <tr>
+                    <th> 
+                        Debiut
+                    </th>
+                    <th> 
+                        Białymi
+                    </th>
+                    <th> 
+                        Czarnymi
+                    </th>
+                </tr>
+                {% for opening, results in openings.items %}
+                    <tr>
+                        <td> 
+                            {{ opening }} 
+                        </td>
+                        <td> 
+                            {{ results.white.wins }} - {{ results.white.draws }} - {{ results.white.loses }}
+                        </td>
+                        <td> 
+                            {{ results.black.wins }} - {{ results.black.draws }} - {{ results.black.loses }}
+                        </td>
+                        
+                    </tr>
+                {% endfor %}
+            </table>
+        </section>
+    </main>
+    
+{% endblock %}

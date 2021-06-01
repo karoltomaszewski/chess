@@ -1,0 +1,28 @@
+{% load static %}
+
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>
+    {% block title %}{% endblock %} | NAZWA PORTALU
+  </title>
+
+  <link href="{% static 'styles.css' %}" rel="stylesheet" />
+  {% block css_files %}{% endblock %}
+
+</head>
+
+<body>
+    <header>
+      <nav>
+        <h1>
+          <a href="{% url 'index' %}">NAZWA PORTALU</a>
+        </h1>
+      </nav>
+    </header>
+    {% block content %}{% endblock %}
+</body>
+</html>
