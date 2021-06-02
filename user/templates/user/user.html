@@ -84,6 +84,7 @@
                             </th>
                         </tr>
                         {% for opening, results in openings.items %}
+                            {% if results.white.games is not 0 %}
                             <tr>
                                 <td class="openingsOpening"> 
                                     <a> {{ opening }} </a>
@@ -100,8 +101,8 @@
                                 <td class="openingsStats">
                                     <a class="win%"> {{ results.white.win_rate }} %</a>
                                 </td>
-                                
                             </tr>
+                            {% endif %}
                         {% endfor %}
                     </table>
                 </div>
@@ -128,6 +129,7 @@
                             </th>
                         </tr>
                         {% for opening, results in openings.items %}
+                            {% if results.black.games is not 0 %}
                             <tr>
                                 <td class="openingsOpening"> 
                                     <a> {{ opening }} </a>
@@ -144,8 +146,8 @@
                                 <td class="openingsStats">
                                     <a class="win%"> {{ results.black.win_rate }} %</a>
                                 </td>
-                                
                             </tr>
+                            {% endif %}
                         {% endfor %}
                     </table>
                 </div>

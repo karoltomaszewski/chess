@@ -56,7 +56,7 @@ def user(request, username):
                 else:
                     continue #jeżeli nie jest to rapid to dalej nie wykonuje tego obrotu pętli 
                 """
-                
+
                 # color and time at the end
                 split_to_time = re.split('{|}', pgn[-2])
                 if pgn[4].split("\"")[1].lower() == username:
@@ -105,13 +105,15 @@ def user(request, username):
                             "wins": 0,
                             "draws": 0,
                             "loses": 0,
-                            "win_rate": 0
+                            "win_rate": 0,
+                            "games": 0
                         },
                         "black": {
                             "wins": 0,
                             "draws": 0,
                             "loses": 0,
-                            "win_rate": 0
+                            "win_rate": 0,
+                            "games": 0
                         }
                     }
                 
@@ -136,9 +138,11 @@ def user(request, username):
     for opening_name, opening_results in openings.items():
         opening_results['white']['win_rate'] = round(opening_results['white']['wins']*100/sum(opening_results['white'].values()), 1) if sum(opening_results['white'].values()) != 0 else 0
         opening_results['black']['win_rate'] = round(opening_results['black']['wins']*100/sum(opening_results['black'].values()), 1) if sum(opening_results['black'].values()) != 0 else 0
+        opening_results['white']['games'] =  opening_results['white']['wins'] + opening_results['white']['draws'] + opening_results['white']['loses']
+        opening_results['black']['games'] = opening_results['black']['wins'] + opening_results['black']['draws'] + opening_results['black']['loses']
 
         # 75% wr w co najmneij 10 partii, nie liczymy remisów do wr
-        games = opening_results['white']['wins'] + opening_results['white']['draws'] + opening_results['white']['loses'] + opening_results['black']['wins'] + opening_results['black']['draws'] + opening_results['black']['loses']
+        games = opening_results['white']['games'] + opening_results['black']['games']
         if games >= 10:
             wins = opening_results['white']['wins'] + opening_results['black']['wins']
             loses = opening_results['white']['loses']+opening_results['black']['loses']
@@ -149,11 +153,10 @@ def user(request, username):
             if wins>=0.75*(wins+loses) and wins>loses:
                 tags.append({"title": "good in "+opening_name, "type": "good"})
             elif wins<= 0.33*(wins+loses) and loses>wins: # mniej niż 33% wr w co najmniej 10, nie liczymy remisów do wr
-                tags.append({"title": "week in "+opening_name, "type": "week"})
+                tags.append({"title": "weak in "+opening_name, "type": "weak"})
     
     percentage_time = round(total_time_used/(total_time/100))
-    print(total_time_used)
-
+    
     # zmiana na lepsze do przekazania
     overall_results = {
         "white": {
