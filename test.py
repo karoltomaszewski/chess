@@ -1,4 +1,4 @@
-import requests
+import requests, re, math
 
 username = "ktomaszewski20".lower()
 
@@ -145,10 +145,11 @@ openings = {}
 while i>=0 and games<50:
     month = requests.get(archives[i]).json()["games"]
     j = len(month)
-    while j>=0 and games<50:
+    while j>=0 and games<10:
         j-=1
         try:
             pgn = month[j]["pgn"].split("\n")
+
 
             # time
             time = pgn[15].split("\"")[1].split("+")
@@ -163,16 +164,39 @@ while i>=0 and games<50:
                 continue
 
             # color
+            split_to_time = re.split('{|}', pgn[-2])
             if pgn[4].split("\"")[1].lower() == username:
                 # white 
                 color = 0
+                if (len(split_to_time) - 1)%4 == 0:
+                    #skończyły czarne
+                    index = len(split_to_time)-4
+                else:
+                    index = len(split_to_time)-2
+                time_at_end = split_to_time[index]
+                num_of_moves = math.ceil(len(split_to_time)//4)
             else:
                 # black
                 color = 1
-            
+                if (len(split_to_time) - 1)%4 == 0:
+                    #skończyły czarne
+                    index = len(split_to_time)-2
+                else:
+                    index = len(split_to_time)-4
+                time_at_end = split_to_time[index]
+                num_of_moves = math.floor(len(split_to_time)//4)
             # result
 
-            print(pgn[6])
+            time_at_end_split = re.split(':| ' ,time_at_end)
+            sec_at_end = int(time_at_end_split[1])*3600+int(time_at_end_split[2])*60+float(time_at_end_split[3][:-1])
+
+            if len(time) != 1:
+                game_time = int(time[0])+int(time[1])*num_of_moves
+            else:
+                game_time = seconds
+
+            print(sec_at_end*100/game_time)
+
             result = pgn[6].split("\"")[1].split("-")
 
             # openings
@@ -182,8 +206,6 @@ while i>=0 and games<50:
             if opening not in list(openings.keys()):
                 openings[opening] = [[0, 0, 0], [0, 0, 0]]
             
-            print(f"{opening} {result} {color}")
-
             if result[color] == "1": # wygrana
                 results[color][0] += 1 
                 openings[opening][color][0] += 1
@@ -198,23 +220,3 @@ while i>=0 and games<50:
             pass
 
     i-=1
-
-print(openings)
-
-"""
-month = requests.get(archives[16]).json()["games"]
-for i in range(len(month)-1, -1, -1):
-    pgn = month[i]["pgn"].split("\n")
-    if pgn[4].split("\"")[1] == username:
-        color = "white"
-    else:
-        color = "black"
-    print(color)
-    time = pgn[15].split("\"")[1].split("+")
-    if len(time) == 1:
-        seconds = int(time[0])
-    else:
-        seconds = int(time[0])+40*int(time[1])
-    if seconds > 600:
-        print("rapid")
-"""

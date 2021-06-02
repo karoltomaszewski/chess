@@ -52,37 +52,49 @@
             </div>
         </section>
    
+        <section id="center">
+            <div class="left">
+                <h4>Openings</h4>
+                <table border=1>
+                    <tr>
+                        <th> 
+                            Debiut
+                        </th>
+                        <th> 
+                            Białymi
+                        </th>
+                        <th> 
+                            Czarnymi
+                        </th>
+                    </tr>
+                    {% for opening, results in openings.items %}
+                        <tr>
+                            <td> 
+                                {{ opening }} 
+                            </td>
+                            <td> 
+                                {{ results.white.wins }} - {{ results.white.draws }} - {{ results.white.loses }}
+                            </td>
+                            <td> 
+                                {{ results.black.wins }} - {{ results.black.draws }} - {{ results.black.loses }}
+                            </td>
+                            
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="right">
+                <div class="top">
+                    <h4>TIME USAGE</h4>
+                    <span class="time">{{percentage_time}}%</span>
+                </div>
+            </div>
+        </section>
 
         <section>
-            <b>Debiuty:</b><br>
-            <table border=1>
-                <tr>
-                    <th> 
-                        Debiut
-                    </th>
-                    <th> 
-                        Białymi
-                    </th>
-                    <th> 
-                        Czarnymi
-                    </th>
-                </tr>
-                {% for opening, results in openings.items %}
-                    <tr>
-                        <td> 
-                            {{ opening }} 
-                        </td>
-                        <td> 
-                            {{ results.white.wins }} - {{ results.white.draws }} - {{ results.white.loses }}
-                        </td>
-                        <td> 
-                            {{ results.black.wins }} - {{ results.black.draws }} - {{ results.black.loses }}
-                        </td>
-                        
-                    </tr>
-                {% endfor %}
-            </table>
+            
         </section>
+
     </main>
     
 {% endblock %}

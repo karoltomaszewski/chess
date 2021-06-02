@@ -93,6 +93,41 @@ section{
     flex: 1;
 }
 
+#center{
+    display: flex;
+    flex-direction: row;
+}
+
+#center > div{
+    flex: 1;
+}
+
+#center > div:nth-child(1){
+    margin-right: 20px;
+}
+
+#center div.right h4{
+    color:#dfe4ea;
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+#center div.right .top{
+    background-color: #2f3542;
+    font-size: 32px;
+    text-align: center;
+    padding: 30px 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+span.time{
+    color: #ffa502;
+    letter-spacing: 1px;
+}
+
 #results h3{
     letter-spacing: 0.6px;
 }

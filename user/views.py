@@ -3,7 +3,7 @@ from user.functions.eco_codes import eco_codes
 from django.http.response import Http404
 from django.shortcuts import render
 
-import requests
+import requests, re, math
 
 def num_to_color(num):
     if num == 0:
@@ -28,6 +28,8 @@ def user(request, username):
     results = [[0,0,0], [0,0,0]]
     openings = {}
     tags = []
+    total_time = 0
+    total_time_used = 0
 
     while i>=0: #games
         month = requests.get(archives[i]).json()["games"]
@@ -36,6 +38,8 @@ def user(request, username):
             j-=1
             try:
                 pgn = month[j]["pgn"].split("\n")
+
+                
 
                 # time
                 time = pgn[15].split("\"")[1].split("+")
@@ -50,13 +54,39 @@ def user(request, username):
                 else:
                     continue #jeżeli nie jest to rapid to dalej nie wykonuje tego obrotu pętli 
 
-                # color
+                # color and time at the end
+                split_to_time = re.split('{|}', pgn[-2])
                 if pgn[4].split("\"")[1].lower() == username:
                     # white 
                     color = 0
+                    if (len(split_to_time) - 1)%4 == 0:
+                        #skończyły czarne
+                        index = len(split_to_time)-4
+                    else:
+                        index = len(split_to_time)-2
+                    time_at_end = split_to_time[index]
+                    num_of_moves = math.ceil(len(split_to_time)//4)
                 else:
                     # black
                     color = 1
+                    if (len(split_to_time) - 1)%4 == 0:
+                        #skończyły czarne
+                        index = len(split_to_time)-2
+                    else:
+                        index = len(split_to_time)-4
+                    time_at_end = split_to_time[index]
+                    num_of_moves = math.floor(len(split_to_time)//4)
+
+                time_at_end_split = re.split(':| ' ,time_at_end)
+                sec_at_end = int(time_at_end_split[1])*3600+int(time_at_end_split[2])*60+float(time_at_end_split[3][:-1])
+
+                if len(time) != 1:
+                    game_time = int(time[0])+int(time[1])*num_of_moves
+                else:
+                    game_time = seconds
+
+                total_time += game_time
+                total_time_used += game_time-sec_at_end
                 
                 # result
 
@@ -110,7 +140,8 @@ def user(request, username):
             elif wins<= 0.33*games: # mniej niż 33% wr w co najmniej 10
                 tags.append({"title": "week in "+opening_name, "type": "week"})
     
-                
+    percentage_time = round(total_time_used/(total_time/100))
+
     # zmiana na lepsze do przekazania
     overall_results = {
         "white": {
@@ -123,15 +154,15 @@ def user(request, username):
             "draws": results[1][1],
             "loses": results[1][2]
         }
-    }
-    
+    }    
 
     return render(request, "user/user.html", {
         "username": username,
         "rapid_rating": stats["chess_rapid"]["last"]["rating"],
         "overall_results": overall_results,
         "openings": openings,
-        "tags": tags
+        "tags": tags,
+        "percentage_time": percentage_time
     })
     
 def index(request):
