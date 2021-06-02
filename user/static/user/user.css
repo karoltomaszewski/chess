@@ -105,8 +105,24 @@ span.time{
 
 .openingsTable{
     width:100%;
+    font-size: large;
 }
+
+.openingsTable th{
+    font-size: 25px;
+}
+.openingsTable tr:nth-child(odd){
+    background-color: #282e3a;
+}
+.openingsTable td{
+    padding: 5px 0px;
+}
+
 
 .openingsStats{
     text-align: center;
+}
+
+#openingsTableHeader1{
+    text-align: left;
 }

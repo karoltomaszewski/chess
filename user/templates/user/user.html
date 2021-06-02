@@ -41,7 +41,9 @@
                         <h3>RAPID</h3>
                         <span class="rating">{{ ratings.rapid_rating }}</span>
                     </div>
+
                     <div></div>
+                    
                     <div class="results_box">
                         <h3>WHITE</h3>
                         <span class="wins">{{ overall_results.white.wins }}</span> - 
@@ -65,31 +67,82 @@
                 <div class="openings">
                     <table class="openingsTable">
                         <tr>
-                            <th> 
-                                Opening
+                            <th id="openingsTableHeader1"> 
+                                Opening as white
                             </th>
-                            <th> 
-                                As white
+                            <th class="wins"> 
+                                W
                             </th>
-                            <th> 
-                                As black
+                            <th class="draws"> 
+                                D
+                            </th>
+                            <th class="loses"> 
+                                L
+                            </th>
+                            <th class="win%"> 
+                                Win%
                             </th>
                         </tr>
                         {% for opening, results in openings.items %}
                             <tr>
-                                <td> 
-                                    {{ opening }} 
+                                <td class="openingsOpening"> 
+                                    <a> {{ opening }} </a>
                                 </td>
                                 <td class="openingsStats"> 
-                                    <a class="wins"> {{ results.white.wins }} </a>-
-                                    <a class="draws"> {{ results.white.draws }} </a>-
-                                    <a class="loses"> {{ results.white.loses }}</a> -
-                                    <a> {{ results.white.win_rate }} %</a> 
+                                    <a class="wins"> {{ results.white.wins }} </a>
                                 </td>
                                 <td class="openingsStats"> 
-                                    <a class="wins"> {{ results.black.wins }} </a>-
-                                    <a class="draws"> {{ results.black.draws }} </a>-
+                                    <a class="draws"> {{ results.white.draws }} </a>
+                                </td>
+                                <td class="openingsStats"> 
+                                    <a class="loses"> {{ results.white.loses }}</a>
+                                </td>
+                                <td class="openingsStats">
+                                    <a class="win%"> {{ results.white.win_rate }} %</a>
+                                </td>
+                                
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </section> <br><br><br><br>
+    
+            <section id="center">
+                <div class="openings">
+                    <table class="openingsTable">
+                        <tr>
+                            <th id="openingsTableHeader1"> 
+                                Opening as black
+                            </th>
+                            <th class="wins"> 
+                                W
+                            </th>
+                            <th class="draws"> 
+                                D
+                            </th>
+                            <th class="loses"> 
+                                L
+                            </th>
+                            <th class="win%"> 
+                                Win%
+                            </th>
+                        </tr>
+                        {% for opening, results in openings.items %}
+                            <tr>
+                                <td class="openingsOpening"> 
+                                    <a> {{ opening }} </a>
+                                </td>
+                                <td class="openingsStats"> 
+                                    <a class="wins"> {{ results.black.wins }} </a>
+                                </td>
+                                <td class="openingsStats"> 
+                                    <a class="draws"> {{ results.black.draws }} </a>
+                                </td>
+                                <td class="openingsStats"> 
                                     <a class="loses"> {{ results.black.loses }}</a>
+                                </td>
+                                <td class="openingsStats">
+                                    <a class="win%"> {{ results.black.win_rate }} %</a>
                                 </td>
                                 
                             </tr>
@@ -97,6 +150,9 @@
                     </table>
                 </div>
             </section>
+
+
+
     </div>
     </main>
     
