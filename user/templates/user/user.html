@@ -24,31 +24,35 @@
             </section>
         {% endif %}
 
-        <section class="ratings">
-            <div class="rating rapid">
-                <div class="rating_value">
-                    {{ rapid_rating }}
+        <section id="top">
+            <div class="ratings">
+                <div class="rating rapid">
+                    <div class="rating_value">
+                        {{ rapid_rating }}
+                    </div>
+                    <div class="rating_name">
+                        RAPID
+                    </div>
                 </div>
-                <div class="rating_name">
-                    RAPID
+            </div>
+            
+            <div id="results">
+                <div class="results_box">
+                    <h3>WHITE</h3>
+                    <span class="wins">{{ overall_results.white.wins }}</span> - 
+                    <span class="draws">{{ overall_results.white.draws }}</span> - 
+                    <span class="loses">{{ overall_results.white.loses }}</span>  
+                </div>
+                <div class="results_box">
+                    <h3>BLACK</h3>
+                    <span class="wins">{{ overall_results.black.wins }}</span> - 
+                    <span class="draws">{{ overall_results.black.draws }}</span> - 
+                    <span class="loses">{{ overall_results.black.loses }}</span>
                 </div>
             </div>
         </section>
-        <br>
-        <section>
-            <b>Białymi:</b><br>
-            zwycięstwa: {{ white.wins }}<br>
-            remisy: {{ white.draws }}<br>
-            porażki: {{ white.loses }}
-        </section>
-        <br>
-        <section>
-            <b>Czarnymi:</b><br>
-            zwycięstwa: {{ black.wins }}<br>
-            remisy: {{ black.draws }}<br>
-            porażki: {{ black.loses }}
-        </section>
-        <br>
+   
+
         <section>
             <b>Debiuty:</b><br>
             <table border=1>
