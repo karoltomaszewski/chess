@@ -11,9 +11,10 @@ def num_to_color(num):
     else:
         return "black"
 
-# Create your views here.
+# Create your views here !!!.
 
 def user(request, username):
+    username = username.lower()
     profile = requests.get(f'https://api.chess.com/pub/player/{username}')
 
     if profile.status_code != 200:
@@ -129,15 +130,18 @@ def user(request, username):
     # tagi
 
     for opening_name, opening_results in openings.items():
-        # 75% wr w co najmneij 10 partii 
+        # 75% wr w co najmneij 10 partii, nie liczymy remisów do wr
         games = opening_results['white']['wins'] + opening_results['white']['draws'] + opening_results['white']['loses'] + opening_results['black']['wins'] + opening_results['black']['draws'] + opening_results['black']['loses']
         if games >= 10:
-            if games > 100:
-                tags.append({"title": opening_name+" enjoyer", "type": "enjoyer"})
             wins = opening_results['white']['wins'] + opening_results['black']['wins']
-            if wins>=0.75*games:
+            loses = opening_results['white']['loses']+opening_results['black']['loses']
+
+            if games > 100 and wins > loses:
+                tags.append({"title": opening_name+" enjoyer", "type": "enjoyer"})
+            
+            if wins>=0.75*(wins+loses) and wins>loses:
                 tags.append({"title": "good in "+opening_name, "type": "good"})
-            elif wins<= 0.33*games: # mniej niż 33% wr w co najmniej 10
+            elif wins<= 0.33*(wins+loses) and loses>wins: # mniej niż 33% wr w co najmniej 10, nie liczymy remisów do wr
                 tags.append({"title": "week in "+opening_name, "type": "week"})
     
     percentage_time = round(total_time_used/(total_time/100))
