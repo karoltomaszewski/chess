@@ -49,12 +49,14 @@ def user(request, username):
                 else:
                     seconds = int(time[0])+40*int(time[1])
 
+                """
                 if seconds >= 600:
                     pass
                     #games+=1
                 else:
                     continue #jeżeli nie jest to rapid to dalej nie wykonuje tego obrotu pętli 
-
+                """
+                
                 # color and time at the end
                 split_to_time = re.split('{|}', pgn[-2])
                 if pgn[4].split("\"")[1].lower() == username:
@@ -102,12 +104,14 @@ def user(request, username):
                         "white": {
                             "wins": 0,
                             "draws": 0,
-                            "loses": 0
+                            "loses": 0,
+                            "win_rate": 0
                         },
                         "black": {
                             "wins": 0,
                             "draws": 0,
-                            "loses": 0
+                            "loses": 0,
+                            "win_rate": 0
                         }
                     }
                 
@@ -130,6 +134,9 @@ def user(request, username):
     # tagi
 
     for opening_name, opening_results in openings.items():
+        opening_results['white']['win_rate'] = round(opening_results['white']['wins']*100/sum(opening_results['white'].values()), 1) if sum(opening_results['white'].values()) != 0 else 0
+        opening_results['black']['win_rate'] = round(opening_results['black']['wins']*100/sum(opening_results['black'].values()), 1) if sum(opening_results['black'].values()) != 0 else 0
+
         # 75% wr w co najmneij 10 partii, nie liczymy remisów do wr
         games = opening_results['white']['wins'] + opening_results['white']['draws'] + opening_results['white']['loses'] + opening_results['black']['wins'] + opening_results['black']['draws'] + opening_results['black']['loses']
         if games >= 10:
@@ -161,11 +168,15 @@ def user(request, username):
         }
     }    
 
+    ratings = {
+        "rapid_rating": stats["chess_rapid"]["last"]["rating"] if "chess_rapid" in list(stats.keys()) else "-",
+        "blitz_rating": stats["chess_blitz"]["last"]["rating"] if "chess_blitz" in list(stats.keys()) else "-",
+        "bullet_rating": stats["chess_bullet"]["last"]["rating"] if "chess_bullet" in list(stats.keys()) else "-",
+    }
+
     return render(request, "user/user.html", {
         "username": username,
-        "rapid_rating": stats["chess_rapid"]["last"]["rating"],
-        "blitz_rating": stats["chess_blitz"]["last"]["rating"],
-        "bullet_rating": stats["chess_bullet"]["last"]["rating"],
+        "ratings": ratings,
         "overall_results": overall_results,
         "openings": openings,
         "tags": tags,
