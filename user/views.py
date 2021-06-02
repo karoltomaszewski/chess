@@ -145,6 +145,7 @@ def user(request, username):
                 tags.append({"title": "week in "+opening_name, "type": "week"})
     
     percentage_time = round(total_time_used/(total_time/100))
+    print(total_time_used)
 
     # zmiana na lepsze do przekazania
     overall_results = {
@@ -163,6 +164,8 @@ def user(request, username):
     return render(request, "user/user.html", {
         "username": username,
         "rapid_rating": stats["chess_rapid"]["last"]["rating"],
+        "blitz_rating": stats["chess_blitz"]["last"]["rating"],
+        "bullet_rating": stats["chess_bullet"]["last"]["rating"],
         "overall_results": overall_results,
         "openings": openings,
         "tags": tags,
