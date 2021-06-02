@@ -12,89 +12,91 @@
 
 {% block content %}
     <main>
-        <h1>{{ username }}</h1>
+    <div>
+            <h1>{{ username }}</h1>
 
-        {% if tags|length > 0 %}
-            <section id="tags">
-                {% for tag in tags %}
-                    <div class="tag {{tag.type}}">
-                        {{tag.title}}
-                    </div>
-                {% endfor %}
-            </section>
-        {% endif %}
-
-        <section id="top">
-            <div class="ratings">
-                <div class="rating rapid">
-                    <div class="rating_value">
-                        {{ rapid_rating }}
-                    </div>
-                    <div class="rating_name">
-                        RAPID
-                    </div>
-                </div>
-            </div>
-            
-            <div id="results">
-                <div class="results_box">
-                    <h3>WHITE</h3>
-                    <span class="wins">{{ overall_results.white.wins }}</span> - 
-                    <span class="draws">{{ overall_results.white.draws }}</span> - 
-                    <span class="loses">{{ overall_results.white.loses }}</span>  
-                </div>
-                <div class="results_box">
-                    <h3>BLACK</h3>
-                    <span class="wins">{{ overall_results.black.wins }}</span> - 
-                    <span class="draws">{{ overall_results.black.draws }}</span> - 
-                    <span class="loses">{{ overall_results.black.loses }}</span>
-                </div>
-            </div>
-        </section>
-   
-        <section id="center">
-            <div class="left">
-                <h4>Openings</h4>
-                <table border=1>
-                    <tr>
-                        <th> 
-                            Debiut
-                        </th>
-                        <th> 
-                            Białymi
-                        </th>
-                        <th> 
-                            Czarnymi
-                        </th>
-                    </tr>
-                    {% for opening, results in openings.items %}
-                        <tr>
-                            <td> 
-                                {{ opening }} 
-                            </td>
-                            <td> 
-                                {{ results.white.wins }} - {{ results.white.draws }} - {{ results.white.loses }}
-                            </td>
-                            <td> 
-                                {{ results.black.wins }} - {{ results.black.draws }} - {{ results.black.loses }}
-                            </td>
-                            
-                        </tr>
+            {% if tags|length > 0 %}
+                <section id="tags">
+                    {% for tag in tags %}
+                        <div class="tag {{tag.type}}">
+                            {{tag.title}}
+                        </div>
                     {% endfor %}
-                </table>
-            </div>
-            <div class="right">
-                <div class="top">
-                    <h4>TIME USAGE</h4>
-                    <span class="time">{{percentage_time}}%</span>
+                </section>
+            {% endif %}
+
+            <section id="top">
+                
+                <div id="results">
+
+                    <div class="ratingbox">
+                        <h3>BULLET</h3>
+                        <span class="rating">{{ bullet_rating }}</span>
+                    </div>
+                    <div class="ratingbox">
+                        <h3>BLITZ</h3>
+                        <span class="rating">{{ blitz_rating }}</span>
+                    </div>
+                    <div class="ratingbox">
+                        <h3>RAPID</h3>
+                        <span class="rating">{{ rapid_rating }}</span>
+                    </div>
+                    <div></div>
+                    <div class="results_box">
+                        <h3>WHITE</h3>
+                        <span class="wins">{{ overall_results.white.wins }}</span> - 
+                        <span class="draws">{{ overall_results.white.draws }}</span> - 
+                        <span class="loses">{{ overall_results.white.loses }}</span>  
+                    </div>
+                    <div class="results_box">
+                        <h3>BLACK</h3>
+                        <span class="wins">{{ overall_results.black.wins }}</span> - 
+                        <span class="draws">{{ overall_results.black.draws }}</span> - 
+                        <span class="loses">{{ overall_results.black.loses }}</span>
+                    </div>
+                    <div class="results_box">
+                        <h3>TIME USAGE</h3>
+                        <span class="time">{{percentage_time}}%</span>
+                    <div>
                 </div>
-            </div>
-        </section>
-
-        <section>
-            
-        </section>
-
+            </section>
+    
+            <section id="center">
+                <div class="openings">
+                    <table class="openingsTable">
+                        <tr>
+                            <th> 
+                                Debiut
+                            </th>
+                            <th> 
+                                Białymi
+                            </th>
+                            <th> 
+                                Czarnymi
+                            </th>
+                        </tr>
+                        {% for opening, results in openings.items %}
+                            <tr>
+                                <td> 
+                                    {{ opening }} 
+                                </td>
+                                <td class="openingsStats"> 
+                                    <a class="wins"> {{ results.white.wins }} </a>-
+                                    <a class="draws"> {{ results.white.draws }} </a>-
+                                    <a class="loses"> {{ results.white.loses }}</a>
+                                </td>
+                                <td class="openingsStats"> 
+                                    <a class="wins"> {{ results.black.wins }} </a>-
+                                    <a class="draws"> {{ results.black.draws }} </a>-
+                                    <a class="loses"> {{ results.black.loses }}</a>
+                                </td>
+                                
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </section>
+    </div>
     </main>
     
 {% endblock %}

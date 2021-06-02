@@ -1,57 +1,15 @@
 main{
-    background-color: white;
-    width: 74%;
+    background-color: #2f3542;
+    width: 90%;
     padding: 10px 30px;
+    color: #dfe4ea;
 }
 
 section{
     margin-bottom: 20px;
 }
 
-.ratings{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-}
 
-.rating{
-    margin-top: 5px;
-    border: solid 3px black;
-    border-radius: 6px;
-    min-width: 100px;
-    min-height: 170px;
-    display: flex;
-    flex-direction: column;
-}
-
-.rating div{
-    padding: 0px 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.rating .rating_value{
-    font-weight: bold;
-    font-size: 23px;
-    flex: 5;
-    text-align: center;
-    width: 100%;
-}
-
-.rating .rating_name{
-    font-size: 19px;
-    flex: 2;
-    
-}
-
-.rating.rapid .rating_value{
-    background-color: #7bed9f; 
-}
-
-.rating.rapid .rating_name{
-    background-color: #2ed573;
-}
 
 #tags{
     display: flex;
@@ -84,7 +42,7 @@ section{
 #top{
     display: flex;
     flex-direction: row;
-    background-color: #2f3542;
+    background-color: #1e2430;
     padding: 20px;
     border-radius: 10px;
 }
@@ -106,30 +64,15 @@ section{
     margin-right: 20px;
 }
 
-#center div.right h4{
-    color:#dfe4ea;
-    margin: 0px;
-    margin-bottom: 10px;
-}
-
-#center div.right .top{
-    background-color: #2f3542;
-    font-size: 32px;
-    text-align: center;
-    padding: 30px 20px;
-    border-radius: 12px;
+.ratings{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-span.time{
-    color: #ffa502;
-    letter-spacing: 1px;
+    flex-direction: row;
+    text-align: center;
+    font-size:21px;
 }
 
 #results h3{
-    letter-spacing: 0.6px;
+    letter-spacing: 0px;
 }
 
 #results{
@@ -137,7 +80,7 @@ span.time{
     flex-direction: row;
     text-align: center;
     color: #dfe4ea;
-    font-size: 23px;
+    font-size: 21px;
 }
 
 #results > div{
@@ -154,4 +97,16 @@ span.time{
 
 .loses{
     color: #ff4757;
+}
+
+span.time{
+    color: #ffa502;
+}
+
+.openingsTable{
+    width:100%;
+}
+
+.openingsStats{
+    text-align: center;
 }
