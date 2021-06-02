@@ -11,7 +11,7 @@ def num_to_color(num):
     else:
         return "black"
 
-# Create your views here.
+# Create your views here !!!.
 
 def user(request, username):
     username = username.lower()
