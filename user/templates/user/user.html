@@ -31,15 +31,15 @@
 
                     <div class="ratingbox">
                         <h3>BULLET</h3>
-                        <span class="rating">{{ bullet_rating }}</span>
+                        <span class="rating">{{ ratings.bullet_rating }}</span>
                     </div>
                     <div class="ratingbox">
                         <h3>BLITZ</h3>
-                        <span class="rating">{{ blitz_rating }}</span>
+                        <span class="rating">{{ ratings.blitz_rating }}</span>
                     </div>
                     <div class="ratingbox">
                         <h3>RAPID</h3>
-                        <span class="rating">{{ rapid_rating }}</span>
+                        <span class="rating">{{ ratings.rapid_rating }}</span>
                     </div>
                     <div></div>
                     <div class="results_box">
@@ -83,7 +83,8 @@
                                 <td class="openingsStats"> 
                                     <a class="wins"> {{ results.white.wins }} </a>-
                                     <a class="draws"> {{ results.white.draws }} </a>-
-                                    <a class="loses"> {{ results.white.loses }}</a>
+                                    <a class="loses"> {{ results.white.loses }}</a> -
+                                    <a> {{ results.white.win_rate }} %</a> 
                                 </td>
                                 <td class="openingsStats"> 
                                     <a class="wins"> {{ results.black.wins }} </a>-
