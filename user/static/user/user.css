@@ -131,7 +131,8 @@ span.time{
     padding: 5px 0px;
 }
 
-.openingsOpening{
+.openings{
+    margin-right: 0px;
 }
 .openingsStats{
     text-align: center;

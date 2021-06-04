@@ -8,7 +8,15 @@
 
 {% block css_files %}
     <link href="{% static '/user/user.css' %}" rel="stylesheet" />
+    <link href="{% static '/user/index.css' %}" rel="stylesheet" />
 {% endblock %} 
 
 {% block content %}
+    <!-- nie zmieniaj method, tagów name, csrf_token -->
+    <!-- STYLE DO TEGO PLIKU RÓB NAJLEPIEJ W index.css - podłączyłem ci je do pliku już -->
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="chess.com username" name="username" />
+        <button type="submit">GENERATE RAPORT</button>
+    </form>
 {% endblock %}

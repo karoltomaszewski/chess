@@ -228,4 +228,8 @@ def user(request, username):
     })
     
 def index(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        return HttpResponseRedirect(reverse("user", args=[username]))
+
     return render(request, "user/index.html")
