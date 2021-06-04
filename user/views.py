@@ -1,6 +1,7 @@
 from user.functions.eco_codes import eco_codes
 
-from django.http.response import Http404
+from django.http.response import Http404, HttpResponseRedirect
+from django.urls import reverse
 from django.shortcuts import render
 
 import requests, re, math
@@ -13,6 +14,9 @@ def num_to_color(num):
 
 # Create your views here !!!.
 
+def notEnoughData(request):
+    return render(request, "user/notEnoughData.html")
+
 def user(request, username):
     username = username.lower()
     profile = requests.get(f'https://api.chess.com/pub/player/{username}')
@@ -21,6 +25,16 @@ def user(request, username):
         raise Http404()
 
     stats = requests.get(f'https://api.chess.com/pub/player/{username}/stats').json()
+
+    ratings = {
+        "rapid_rating": stats["chess_rapid"]["last"]["rating"] if "chess_rapid" in list(stats.keys()) else "-",
+        "blitz_rating": stats["chess_blitz"]["last"]["rating"] if "chess_blitz" in list(stats.keys()) else "-",
+        "bullet_rating": stats["chess_bullet"]["last"]["rating"] if "chess_bullet" in list(stats.keys()) else "-",
+    }
+
+    if ratings["rapid_rating"] == "-" and ratings["blitz_rating"] == "-" and ratings["bullet_rating"] == "-":
+        return HttpResponseRedirect(reverse("notEnoughData"))
+
     archives = requests.get(f'https://api.chess.com/pub/player/{username}/games/archives').json()["archives"]
 
     # last 50 games
@@ -185,12 +199,6 @@ def user(request, username):
             "loses": results[1][2]
         }
     }    
-
-    ratings = {
-        "rapid_rating": stats["chess_rapid"]["last"]["rating"] if "chess_rapid" in list(stats.keys()) else "-",
-        "blitz_rating": stats["chess_blitz"]["last"]["rating"] if "chess_blitz" in list(stats.keys()) else "-",
-        "bullet_rating": stats["chess_bullet"]["last"]["rating"] if "chess_bullet" in list(stats.keys()) else "-",
-    }
 
     moves = {
         "overall_moves": overall_moves,
