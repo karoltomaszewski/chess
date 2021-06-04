@@ -63,12 +63,16 @@
                 </div>
             </section>
     
-            <section id="center">
+
+
+
+
+            <button type="button" class="otworzMenu">White</button>
+            <section id="center" class="contentMenu">
                 <div class="openings">
                     <table class="openingsTable">
                         <tr>
-                            <th id="openingsTableHeader1"> 
-                                Opening as white
+                            <th id="openingsTableHeader1">
                             </th>
                             <th class="wins"> 
                                 W
@@ -86,8 +90,8 @@
                         {% for opening, results in openings.items %}
                             {% if results.white.games is not 0 %}
                             <tr>
-                                <td class="openingsOpening"> 
-                                    <a> {{ opening }} </a>
+                                <td class="openingsOpening" id="openingsFirstCell"> 
+                                    <div class="openingsOpeningDiv">{{ opening }}</div>
                                 </td>
                                 <td class="openingsStats"> 
                                     <a class="wins"> {{ results.white.wins }} </a>
@@ -98,22 +102,22 @@
                                 <td class="openingsStats"> 
                                     <a class="loses"> {{ results.white.loses }}</a>
                                 </td>
-                                <td class="openingsStats">
-                                    <a class="win%"> {{ results.white.win_rate }} %</a>
+                                <td class="openingsStats" id="openingsLastCell">
+                                    <a class="win%"> {{ results.white.win_rate }}%</a>
                                 </td>
                             </tr>
                             {% endif %}
                         {% endfor %}
                     </table>
                 </div>
-            </section> <br><br><br><br>
-    
-            <section id="center">
+            </section>
+
+            <button type="button" class="otworzMenu">Black</button>
+            <section id="center" class="contentMenu">
                 <div class="openings">
                     <table class="openingsTable">
                         <tr>
                             <th id="openingsTableHeader1"> 
-                                Opening as black
                             </th>
                             <th class="wins"> 
                                 W
@@ -131,8 +135,8 @@
                         {% for opening, results in openings.items %}
                             {% if results.black.games is not 0 %}
                             <tr>
-                                <td class="openingsOpening"> 
-                                    <a> {{ opening }} </a>
+                                <td class="openingsOpening" id="openingsFirstCell"> 
+                                    <div class="openingsOpeningDiv"> {{ opening }} </div>
                                 </td>
                                 <td class="openingsStats"> 
                                     <a class="wins"> {{ results.black.wins }} </a>
@@ -143,8 +147,8 @@
                                 <td class="openingsStats"> 
                                     <a class="loses"> {{ results.black.loses }}</a>
                                 </td>
-                                <td class="openingsStats">
-                                    <a class="win%"> {{ results.black.win_rate }} %</a>
+                                <td class="openingsStats" id="openingsLastCell">
+                                    <a class="win%"> {{ results.black.win_rate }}%</a>
                                 </td>
                             </tr>
                             {% endif %}
@@ -153,7 +157,23 @@
                 </div>
             </section>
 
+            <script>
+                var coll = document.getElementsByClassName("otworzMenu");
+                var i;
 
+                for (i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+
+                    var content = this.nextElementSibling;
+                    if (content.style.maxHeight){
+                        content.style.maxHeight = null;
+                    } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
+                }
+            </script>
 
     </div>
     </main>

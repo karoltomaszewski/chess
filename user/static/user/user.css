@@ -3,6 +3,7 @@ main{
     width: 90%;
     padding: 10px 30px;
     color: #dfe4ea;
+    border-radius: 0px 0px 10px 10px;
 }
 
 section{
@@ -109,20 +110,50 @@ span.time{
 }
 
 .openingsTable th{
-    font-size: 25px;
+    font-size: 20px;
 }
-.openingsTable tr:nth-child(odd){
-    background-color: #282e3a;
+.openingsTable tr:nth-child(even){
+    background-color: #1e2430;
 }
 .openingsTable td{
     padding: 5px 0px;
 }
 
-
+.openingsOpening{
+}
 .openingsStats{
     text-align: center;
 }
-
+#openingsFirstCell{
+    border-radius: 8px 0px 0px 8px;
+}
+#openingsLastCell{
+    border-radius: 0px 8px 8px 0px;
+}
 #openingsTableHeader1{
     text-align: left;
 }
+
+.openingsOpeningDiv{
+    padding-left: 15px;
+}
+
+.otworzMenu{
+    background-color: #1e2430;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size:25px;
+    border-radius: 10px;
+  }
+
+  .contentMenu{
+    padding: 0 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+  }
