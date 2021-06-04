@@ -33,15 +33,19 @@ def user(request, username):
     total_time_used = 0
     overall_moves = 0
 
+    check_streak = True
+    streak = {
+        "type": None,
+        "length": 0
+    }
+
     while i>=0: #games
         month = requests.get(archives[i]).json()["games"]
-        j = len(month)-1 # z jakiegoś powodu jak nie odejmuje to liczy mi 2krotnie ostatnią partię :?
-        while j>=0: #games
+        j = len(month) 
+        while j>0: #games
             j-=1
             try:
                 pgn = month[j]["pgn"].split("\n")
-
-                
 
                 # time
                 time = pgn[15].split("\"")[1].split("+")
@@ -128,6 +132,15 @@ def user(request, username):
                 else: # porażka
                     results[color][2] += 1 
                     openings[opening][num_to_color(color)]["loses"] += 1
+
+                if check_streak == True:
+                    if streak["type"] == result[color] or streak["type"] == None:
+                        if streak["type"] == None:
+                            streak["type"] = result[color]
+                        streak["length"] += 1
+                    else:
+                        check_streak = False
+
             except:
                 pass
 
@@ -184,7 +197,17 @@ def user(request, username):
         "avg_moves": round(overall_moves/(sum(overall_results['white'].values())+ sum(overall_results['black'].values())), 1)
     }
 
-    print(moves["avg_moves"])
+    if streak["type"] == "1":
+        streak["type"] = "win"
+    elif streak["type"] == "1/2":
+        streak["type"] = "draw"
+    else:
+        streak["type"] = "lose"
+
+    if streak["length"] >= 3:
+        tags.insert(0, {"title": streak["type"]+" streak", "type": streak["type"]})
+
+    print(streak)
 
     return render(request, "user/user.html", {
         "username": username,
@@ -193,7 +216,7 @@ def user(request, username):
         "openings": openings,
         "tags": tags,
         "percentage_time": percentage_time,
-        "moves": overall_moves
+        "moves": moves
     })
     
 def index(request):
