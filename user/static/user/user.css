@@ -53,6 +53,7 @@ section{
 
 #top{
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     background-color: #1e2430;
     width: 100%;
@@ -73,9 +74,6 @@ section{
     flex: 1;
 }
 
-#center > div:nth-child(1){
-    margin-right: 20px;
-}
 
 .ratings{
     display: flex;
@@ -123,12 +121,13 @@ span.time{
 
 .openingsTable th{
     font-size: 20px;
+    min-width: 30px;
 }
 .openingsTable tr:nth-child(even){
     background-color: #1e2430;
 }
 .openingsTable td{
-    padding: 5px 0px;
+    padding: 10px 5px;
 }
 
 .openingsOpening{
