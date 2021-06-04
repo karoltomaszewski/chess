@@ -28,12 +28,16 @@ section{
     letter-spacing: 0.2px;
 }
 
-.tag.good{
+.tag.good, .tag.win{
     background-color: #27ae60;
 }
 
-.tag.weak{
+.tag.weak, .tag.lose{
     background-color: #e74c3c;
+}
+
+.tag.draw{
+    background-color: #eccc68;
 }
 
 .tag.enjoyer{
