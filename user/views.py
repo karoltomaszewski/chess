@@ -31,6 +31,7 @@ def user(request, username):
     tags = []
     total_time = 0
     total_time_used = 0
+    overall_moves = 0
 
     while i>=0: #games
         month = requests.get(archives[i]).json()["games"]
@@ -82,6 +83,7 @@ def user(request, username):
 
                 time_at_end_split = re.split(':| ' ,time_at_end)
                 sec_at_end = int(time_at_end_split[1])*3600+int(time_at_end_split[2])*60+float(time_at_end_split[3][:-1])
+                overall_moves += num_of_moves
 
                 if len(time) != 1:
                     game_time = int(time[0])+int(time[1])*num_of_moves
@@ -177,13 +179,21 @@ def user(request, username):
         "bullet_rating": stats["chess_bullet"]["last"]["rating"] if "chess_bullet" in list(stats.keys()) else "-",
     }
 
+    moves = {
+        "overall_moves": overall_moves,
+        "avg_moves": round(overall_moves/(sum(overall_results['white'].values())+ sum(overall_results['black'].values())), 1)
+    }
+
+    print(moves["avg_moves"])
+
     return render(request, "user/user.html", {
         "username": username,
         "ratings": ratings,
         "overall_results": overall_results,
         "openings": openings,
         "tags": tags,
-        "percentage_time": percentage_time
+        "percentage_time": percentage_time,
+        "moves": overall_moves
     })
     
 def index(request):
