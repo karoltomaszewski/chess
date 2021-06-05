@@ -6,6 +6,8 @@ from django.shortcuts import render
 
 import requests, re, math
 
+from .forms import MainForm
+
 def num_to_color(num):
     if num == 0:
         return "white"
@@ -229,7 +231,13 @@ def user(request, username):
     
 def index(request):
     if request.method == "POST":
-        username = request.POST["username"]
-        return HttpResponseRedirect(reverse("user", args=[username]))
+        form = MainForm(request.POST)
 
-    return render(request, "user/index.html")
+        if form.is_valid():
+            return HttpResponseRedirect(reverse("user", args=[form.cleaned_data["username"]]))
+
+    form = MainForm()
+
+    return render(request, "user/index.html", {
+        "form": form
+    })

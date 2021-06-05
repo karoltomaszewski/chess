@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block title %}
-    STRONA GŁÓWNA
+    STRONA GŁÓWNA 
 {% endblock %}
 
 {% block css_files %}
@@ -12,11 +12,10 @@
 {% endblock %} 
 
 {% block content %}
-    <!-- nie zmieniaj method, tagów name, csrf_token -->
-    <!-- STYLE DO TEGO PLIKU RÓB NAJLEPIEJ W index.css - podłączyłem ci je do pliku już -->
+    <!-- id od elementów formularza sobie znajdź w konsoli przeglądarki -->
     <form method="POST">
         {% csrf_token %}
-        <input type="text" placeholder="chess.com username" name="username" />
+        {{ form }}
         <button type="submit">GENERATE RAPORT</button>
     </form>
 {% endblock %}
