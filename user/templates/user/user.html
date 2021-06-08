@@ -59,7 +59,7 @@
                     </div>
                     <div class="results_box">
                         <h3>TIME USAGE</h3>
-                        <span class="time">{{percentage_time}}%</span>
+                        <span class="time">{{time.percentage_time}}%</span>
                     <div>
                 </div>
             </section>
@@ -163,24 +163,9 @@
             </div>
 
 
-
-            <script>
-                var coll = document.getElementsByClassName("otworzMenu");
-                var i;
-
-                for (i = 0; i < coll.length; i++) {
-                coll[i].addEventListener("click", function() {
-                    this.classList.toggle("active");
-
-                    var content = this.nextElementSibling;
-                    if (content.style.maxHeight){
-                        content.style.maxHeight = null;
-                    } else {
-                    content.style.maxHeight = content.scrollHeight + "px";
-                    }
-                });
-                }
-            </script>
+            {% block js_scripts %}
+                <script src="{% static "/user/scripts/table.js" %}"></script>
+            {% endblock %}
     </main>
     
 {% endblock %}

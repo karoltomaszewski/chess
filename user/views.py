@@ -1,4 +1,6 @@
 from user.functions.eco_codes import eco_codes
+from user.functions.stats import all_games_color, wins_and_loses
+from user.functions.time_in_game import time_in_game
 
 from django.http.response import Http404, HttpResponseRedirect
 from django.urls import reverse
@@ -45,8 +47,9 @@ def user(request, username):
     results = [[0,0,0], [0,0,0]]
     openings = {}
     tags = []
-    total_time = 0
-    total_time_used = 0
+    time_spent = 0 # czas jaki spędziłeś w grze
+    total_time = 0 # twój czas jaki łącznie mogłeś wykorzystać
+    total_time_used = 0 # twój czas jaki wykorzystałeś
     overall_moves = 0
 
     check_streak = True
@@ -77,6 +80,9 @@ def user(request, username):
                 else:
                     continue #jeżeli nie jest to rapid to dalej nie wykonuje tego obrotu pętli 
                 """
+                # spent time
+
+                time_spent += time_in_game(pgn[17], pgn[19])
 
                 # color and time at the end
                 split_to_time = re.split('{|}', pgn[-2])
@@ -89,7 +95,7 @@ def user(request, username):
                     else:
                         index = len(split_to_time)-2
                     time_at_end = split_to_time[index]
-                    num_of_moves = math.ceil(len(split_to_time)//4)
+                    num_of_moves = math.ceil(len(split_to_time)/4)
                 else:
                     # black
                     color = 1
@@ -99,7 +105,7 @@ def user(request, username):
                     else:
                         index = len(split_to_time)-4
                     time_at_end = split_to_time[index]
-                    num_of_moves = math.floor(len(split_to_time)//4)
+                    num_of_moves = len(split_to_time)//4
 
                 time_at_end_split = re.split(':| ' ,time_at_end)
                 sec_at_end = int(time_at_end_split[1])*3600+int(time_at_end_split[2])*60+float(time_at_end_split[3][:-1])
@@ -167,10 +173,10 @@ def user(request, username):
     # tagi
 
     for opening_name, opening_results in openings.items():
-        opening_results['white']['win_rate'] = round(opening_results['white']['wins']*100/sum(opening_results['white'].values()), 1) if sum(opening_results['white'].values()) != 0 else 0
-        opening_results['black']['win_rate'] = round(opening_results['black']['wins']*100/sum(opening_results['black'].values()), 1) if sum(opening_results['black'].values()) != 0 else 0
-        opening_results['white']['games'] =  opening_results['white']['wins'] + opening_results['white']['draws'] + opening_results['white']['loses']
-        opening_results['black']['games'] = opening_results['black']['wins'] + opening_results['black']['draws'] + opening_results['black']['loses']
+        opening_results['white']['win_rate'] = round(opening_results['white']['wins']*100/(wins_and_loses(opening_results["white"]))) if wins_and_loses(opening_results["white"]) != 0 else 0
+        opening_results['black']['win_rate'] = round(opening_results['black']['wins']*100/(wins_and_loses(opening_results["black"]))) if wins_and_loses(opening_results["black"]) != 0 else 0
+        opening_results['white']['games'] =  all_games_color(opening_results['white'])
+        opening_results['black']['games'] = all_games_color(opening_results['black'])
 
         # 75% wr w co najmneij 10 partii, nie liczymy remisów do wr
         games = opening_results['white']['games'] + opening_results['black']['games']
@@ -217,15 +223,22 @@ def user(request, username):
     if streak["length"] >= 3:
         tags.insert(0, {"title": streak["type"]+" streak", "type": streak["type"]})
 
-    print(streak)
+    if time_spent < 1000:
+        time_spent = f'{math.ceil(time_spent)}h'
+    else:
+        time_spent = f'{round(time_spent/1000, 1)}k h'
 
+    time = {
+        "percentage_time": percentage_time,
+        "spent_time": time_spent
+    }
     return render(request, "user/user.html", {
         "username": username,
         "ratings": ratings,
         "overall_results": overall_results,
         "openings": openings,
         "tags": tags,
-        "percentage_time": percentage_time,
+        "time": time,
         "moves": moves
     })
     
