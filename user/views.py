@@ -1,4 +1,4 @@
-from user.functions.eco_codes import eco_codes
+from user.functions.opening import f_opening
 from user.functions.stats import all_games_color, wins_and_loses
 from user.functions.time_in_game import time_in_game
 
@@ -125,8 +125,7 @@ def user(request, username):
 
                 # openings
 
-                opening = eco_codes(pgn[9].split("\"")[-2])
-                #print(" ".join(pgn[10].split("/")[-1][:-1].split("-")[0:3]))
+                opening = f_opening(pgn[10].replace("\"", "").split("/")[-1][:-1].split("-")[0:6])
 
                 if opening not in list(openings.keys()):
                     openings[opening] = {
