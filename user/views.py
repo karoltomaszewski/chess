@@ -126,6 +126,7 @@ def user(request, username):
                 # openings
 
                 opening = eco_codes(pgn[9].split("\"")[-2])
+                #print(" ".join(pgn[10].split("/")[-1][:-1].split("-")[0:3]))
 
                 if opening not in list(openings.keys()):
                     openings[opening] = {
