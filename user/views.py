@@ -232,6 +232,9 @@ def user(request, username):
         "percentage_time": percentage_time,
         "spent_time": time_spent
     }
+
+    #print(time, moves)
+
     return render(request, "user/user.html", {
         "username": username,
         "ratings": ratings,
