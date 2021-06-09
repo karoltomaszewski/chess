@@ -12,10 +12,16 @@
 {% endblock %} 
 
 {% block content %}
-    <!-- id od elementów formularza sobie znajdź w konsoli przeglądarki -->
-    <form method="POST">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">GENERATE RAPORT</button>
-    </form>
+    <main>
+        <!-- id od elementów formularza sobie znajdź w konsoli przeglądarki -->
+        <form method="POST" id="form">
+            <div id="formContent">
+                {% csrf_token %}
+                {{ form }}
+            </div>
+
+
+            <button type="submit" id="generate">Generate</button>
+        </form>
+    </main>
 {% endblock %}

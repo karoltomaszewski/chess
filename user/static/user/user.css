@@ -1,3 +1,4 @@
+
 main{
     background-color: #2f3542;
     width: 94%;
@@ -163,7 +164,14 @@ span.time{
     font-size:25px;
     border-radius: 10px;
   }
-
+  .menuAll{
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding:0px;
+    display: flex;
+    flex-direction: row;
+  }
   .contentMenu{
     width: 100%;
     padding: 0 10px;
@@ -176,4 +184,12 @@ span.time{
   }
   .colorsMenu{
       width:50%;
+      padding-right: 1%;
+  }
+
+  .statsMenu{
+      width:50%;
+      padding-left: 1%;
+      background-color:#1e2430;
+      align-self: stretch;
   }

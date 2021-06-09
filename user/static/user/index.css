@@ -1,3 +1,40 @@
 input{
     font-size: 22px;
 }
+
+main{
+    background-color: #2f3542;
+    width: 94%;
+    padding: 10px 30px;
+    color: #dfe4ea;
+    border-radius: 0px 0px 10px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+#id_username{
+    background-color: #1e2430;
+    border-style: none;
+    height: 30px;
+    color: #dfe4ea;
+}
+#form{
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+
+}
+#formContent{
+    display:flex;
+    flex-direction: row-reverse;
+}
+#generate{
+    background-color: #1e2430;
+    color: #dfe4ea;
+    border-style: none;
+    height: 30px;
+}
+#formContent{
+    width:100%;
+}
