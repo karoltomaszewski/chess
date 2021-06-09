@@ -15,7 +15,9 @@
     <!-- id od elementów formularza sobie znajdź w konsoli przeglądarki -->
     <form method="POST">
         {% csrf_token %}
-        {{ form }}
+        <table>
+            {{ form.as_table }}
+        </table>
         <button type="submit">GENERATE RAPORT</button>
     </form>
 {% endblock %}
