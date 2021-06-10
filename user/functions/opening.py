@@ -188,27 +188,13 @@ def f_opening(open_name):
     }
 
     openings_list = list(openings.keys())
+    open_name_conv = open_name[0]
 
-    open_name_conv = f'{open_name[0]} {open_name[1]}'
-
-    if open_name_conv == "Queens Pawn": # to trza ogarnąc
-        print(open_name)
-
-    if open_name_conv in openings_list:
-        if 'return' in openings[open_name_conv].keys():
-            return openings[open_name_conv]["return"]
-        return open_name_conv
-    else:
-        open_name_conv += f' {open_name[2]}'
+    for i in range(1, 3):
         if open_name_conv in openings_list:
             if 'return' in openings[open_name_conv].keys():
                 return openings[open_name_conv]["return"]
             return open_name_conv
-        else:
-            open_name_conv += f' {open_name[3]} {open_name[4]} {open_name[5]} {open_name[6]}'
-            if open_name_conv in openings_list:
-                if 'return' in openings[open_name_conv].keys():
-                    return openings[open_name_conv]["return"]
-                return open_name_conv
-            
-            return "NOT IN BASE"
+        open_name_conv += " "+open_name[i]
+
+    return "NOT IN BASE"
