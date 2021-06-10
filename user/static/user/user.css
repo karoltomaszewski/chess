@@ -55,9 +55,6 @@ section{
     border-radius: 10px;
 }
 
-#top > div{
-    flex: 1;
-}
 
 #center{
     display: flex;
