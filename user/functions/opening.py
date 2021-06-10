@@ -64,6 +64,10 @@ def f_opening(open_name):
             'color': 'black',
             'name': 'Petrov\'s Defense'
         },
+        'Lion': {
+            'color': 'black',
+            'name': 'Lion Defense'
+        },
         'Grunfeld': {
             'color': 'black',
             'name': 'Grünfeld Defense'
@@ -73,6 +77,10 @@ def f_opening(open_name):
             'name': 'Semi Slav Defense'
         },
         'Kings Indian Attack': {
+            'color': 'white',
+            'name': 'King\'s Indian Attack'
+        },
+        'Kings Indian Attack...3.Bg2': {
             'color': 'white',
             'name': 'King\'s Indian Attack'
         },
@@ -99,6 +107,26 @@ def f_opening(open_name):
         'Queens Pawn': {
             'color': 'white',
             'name': 'Queen\'s Pawn Opening'
+        },
+        'Queens Indian': {
+            'color': 'black',
+            'name': 'Queen\'s Indian Defense'
+        },
+        'Budapest': {
+            'color': 'black',
+            'name': 'Budapest Gambit'
+        },
+        'Catalan': {
+            'color': 'white',
+            'name': 'Catalan Opening'
+        },
+        'Bogo': {
+            'color': 'black',
+            'name': 'Bogo-Indian Defense'
+        },
+        'Blumenfeld': {
+            'color': 'black',
+            'name': 'Blumenfeld Countergambit'
         },
         'Three': {
             'color': 'white',
@@ -267,4 +295,5 @@ def f_opening(open_name):
     
         open_name_conv += " "+open_name[i]
 
+    print(open_name_conv)
     return "NOT IN BASE"
