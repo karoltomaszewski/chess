@@ -68,30 +68,30 @@
 
             <div class="menuAll">
                 <div class="colorsMenu">
-                    <div class="Menu">
-                    <button type="button" class="otworzMenu">White
-                        <div class="otworzMenuResults">
-                            <a class="wins">{{ overall_results.white.wins }}</a> - 
-                            <a class="draws">{{ overall_results.white.draws }}</a> - 
-                            <a class="loses">{{ overall_results.white.loses }}</a>
-                        </div>
-                    </button>
+                    <div class="Menu" id="menuWhite">
+                        <button type="button" class="otworzMenu">White
+                            <div class="otworzMenuResults">
+                                <a class="wins">{{ overall_results.white.wins }}</a> - 
+                                <a class="draws">{{ overall_results.white.draws }}</a> - 
+                                <a class="loses">{{ overall_results.white.loses }}</a>
+                            </div>
+                        </button>
                         <section id="center" class="contentMenu">
                             <div class="openings">
-                                <table class="openingsTable">
-                                    <tr>
+                                <table class="openingsTable" id="openingsTableWhite">
+                                    <tr class="openingsTableFirstRow">
                                         <th id="openingsTableHeader1">
                                         </th>
-                                        <th class="wins"> 
+                                        <th class="wins pointer" onclick="sortTableWhite(1)"> 
                                             W
                                         </th>
-                                        <th class="draws"> 
+                                        <th class="draws pointer" onclick="sortTableWhite(2)"> 
                                             D
                                         </th>
-                                        <th class="loses"> 
+                                        <th class="loses pointer" onclick="sortTableWhite(3)"> 
                                             L
                                         </th>
-                                        <th class="win%"> 
+                                        <th class="win% pointer" onclick="sortTableWhite(4)"> 
                                             Win%
                                         </th>
                                     </tr>
@@ -101,17 +101,17 @@
                                             <td class="openingsOpening" id="openingsFirstCell"> 
                                                 <div class="openingsOpeningDiv">{{ opening }}</div>
                                             </td>
-                                            <td class="openingsStats"> 
-                                                <a class="wins"> {{ results.white.wins }} </a>
+                                            <td class="openingsStats wins"> 
+                                                {{ results.white.wins }}
                                             </td>
-                                            <td class="openingsStats"> 
-                                                <a class="draws"> {{ results.white.draws }} </a>
+                                            <td class="openingsStats draws"> 
+                                                {{ results.white.draws }}
                                             </td>
-                                            <td class="openingsStats"> 
-                                                <a class="loses"> {{ results.white.loses }}</a>
+                                            <td class="openingsStats loses"> 
+                                                {{ results.white.loses }}
                                             </td>
-                                            <td class="openingsStats" id="openingsLastCell">
-                                                <a class="win%"> {{ results.white.win_rate }}%</a>
+                                            <td class="openingsStats win%" id="openingsLastCell">
+                                                {{ results.white.win_rate }}%
                                             </td>
                                         </tr>
                                         {% endif %}
@@ -121,30 +121,30 @@
                         </section>
                     </div>
                     
-                    <div class="Menu">
-                    <button type="button" class="otworzMenu">Black
-                        <div class="otworzMenuResults">
-                            <a class="wins">{{ overall_results.black.wins }}</a> - 
-                            <a class="draws">{{ overall_results.black.draws }}</a> - 
-                            <a class="loses">{{ overall_results.black.loses }}</a>
-                        </div>
-                    </button>
+                    <div class="Menu" id="menuBlack">
+                        <button type="button" class="otworzMenu">Black
+                            <div class="otworzMenuResults">
+                                <a class="wins">{{ overall_results.black.wins }}</a> - 
+                                <a class="draws">{{ overall_results.black.draws }}</a> - 
+                                <a class="loses">{{ overall_results.black.loses }}</a>
+                            </div>
+                        </button>
                         <section id="center" class="contentMenu">
                             <div class="openings">
-                                <table class="openingsTable">
-                                    <tr>
+                                <table class="openingsTable" id="openingsTableBlack">
+                                    <tr class="openingsTableFirstRow">
                                         <th id="openingsTableHeader1"> 
                                         </th>
-                                        <th class="wins"> 
+                                        <th class="wins pointer" onclick="sortTableBlack(1)"> 
                                             W
                                         </th>
-                                        <th class="draws"> 
+                                        <th class="draws pointer" onclick="sortTableBlack(2)"> 
                                             D
                                         </th>
-                                        <th class="loses"> 
+                                        <th class="loses pointer" onclick="sortTableBlack(3)"> 
                                             L
                                         </th>
-                                        <th class="win%" title="TEST"> 
+                                        <th class="win% pointer" onclick="sortTableBlack(4)"> 
                                             Win%
                                         </th>
                                     </tr>
@@ -152,19 +152,19 @@
                                         {% if results.black.games is not 0 %}
                                         <tr>
                                             <td class="openingsOpening" id="openingsFirstCell"> 
-                                                <div class="openingsOpeningDiv"> {{ opening }} </div>
+                                                <div class="openingsOpeningDiv">{{ opening }}</div>
                                             </td>
-                                            <td class="openingsStats"> 
-                                                <a class="wins"> {{ results.black.wins }} </a>
+                                            <td class="openingsStats wins"> 
+                                                {{ results.black.wins }}
                                             </td>
-                                            <td class="openingsStats"> 
-                                                <a class="draws"> {{ results.black.draws }} </a>
+                                            <td class="openingsStats draws"> 
+                                                {{ results.black.draws }}
                                             </td>
-                                            <td class="openingsStats"> 
-                                                <a class="loses"> {{ results.black.loses }}</a>
+                                            <td class="openingsStats loses"> 
+                                                {{ results.black.loses }}
                                             </td>
-                                            <td class="openingsStats" id="openingsLastCell">
-                                                <a class="win%"> {{ results.black.win_rate }}%</a>
+                                            <td class="openingsStats win%" id="openingsLastCell">
+                                                {{ results.black.win_rate }}%
                                             </td>
                                         </tr>
                                         {% endif %}
@@ -176,7 +176,25 @@
                 </div>
 
                 <div class="statsMenu">
+                    <div class="statsMenuRatings">
+                        <div class="ratingbox">
+                            <a class="ratingboxHeader">BULLET</a>
+                            <br>
+                            <a class="rating">{{ ratings.bullet_rating }}</a>
+                        </div>
+                        <div class="ratingbox">
+                            <a class="ratingboxHeader">BLITZ</a>
+                            <br>
+                            <a class="rating">{{ ratings.blitz_rating }}</a>
+                        </div>
+                        <div class="ratingbox">
+                            <a class="ratingboxHeader">RAPID</a>
+                            <br>
+                            <a class="rating">{{ ratings.rapid_rating }}</a>
+                        </div>
+                    </div>
                     <table id="statsMenuTable">
+                    <!--
                         <tr>
                             <th class="statsMenuTableHeader">
                             BULLET
@@ -201,12 +219,37 @@
                                 <a>{{ ratings.rapid_rating }}</a>
                             </td>
                         </tr>
+                    -->
                         <tr>
                             <th class="statsMenuTableHeader">
                             TIME USAGE
                             </th>
                             <td class="statsMenuTableTd">
                                 <a class="time">{{time.percentage_time}}%</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="statsMenuTableHeader">
+                            MOVES AVG.
+                            </th>
+                            <td class="statsMenuTableTd">
+                                <a>{{moves.avg_moves}}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="statsMenuTableHeader">
+                            MOVES MADE
+                            </th>
+                            <td class="statsMenuTableTd">
+                                <a>{{moves.overall_moves}}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="statsMenuTableHeader">
+                            PLAYTIME
+                            </th>
+                            <td class="statsMenuTableTd">
+                                <a>{{time.spent_time}}</a>
                             </td>
                         </tr>
                     </table>

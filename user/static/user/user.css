@@ -66,16 +66,7 @@ section{
 }
 
 
-.ratings{
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    font-size:21px;
-}
 
-#results h3{
-    letter-spacing: 0px;
-}
 
 #results{
     display: flex;
@@ -139,6 +130,10 @@ section{
     text-align: left;
 }
 
+.pointer{
+    cursor: pointer;
+}
+
 .openingsOpeningDiv{
     padding-left: 15px;
 }
@@ -198,7 +193,7 @@ section{
   }
 
   #statsMenuTable{
-      font-size:25px;
+      font-size:140%;
       width:100%;
       border-spacing: 5px;
   }
@@ -208,3 +203,29 @@ section{
   #statsMenuTable tr td{
       text-align: center;
   }
+
+  .statsMenuRatingsRating{
+    width:100%;
+}
+.statsMenuRatings{
+    width:100%;
+    display: flex;
+    align-items: baseline;
+    align-content: space-between;
+}
+
+
+.ratingbox{
+    width: 35%;
+    text-align: center;
+    padding-bottom: 30px;
+}
+.ratingboxHeader{
+    font-size:160%;
+    font-weight: bolder;
+
+}
+.rating{
+    font-size:120%;
+    font-weight: bolder;
+}

@@ -207,9 +207,20 @@ def user(request, username):
             "loses": results[1][2]
         }
     }    
+    
+    # SORKA ZA SAMOWOLKE, ALE NIE NAMIESZALEM CHYBA NIGZDIE NIC
+    overall_moves_rounded = 0
+
+    if overall_moves < 1000:
+        overall_moves_rounded = math.ceil(overall_moves)
+    elif overall_moves < 1000000:
+        overall_moves_rounded = f'{round(overall_moves/1000, 1)}k'
+    else:
+        overall_moves_rounded = f'{round(overall_moves/1000000, 1)}m'
+
 
     moves = {
-        "overall_moves": overall_moves,
+        "overall_moves": overall_moves_rounded,
         "avg_moves": round(overall_moves/(sum(overall_results['white'].values())+ sum(overall_results['black'].values())), 1)
     }
 
