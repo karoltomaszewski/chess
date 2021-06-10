@@ -7,17 +7,28 @@
 {% endblock %}
 
 {% block css_files %}
-    <link href="{% static '/user/user.css' %}" rel="stylesheet" />
     <link href="{% static '/user/index.css' %}" rel="stylesheet" />
 {% endblock %} 
 
 {% block content %}
-    <!-- id od elementów formularza sobie znajdź w konsoli przeglądarki -->
-    <form method="POST">
-        {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-        <button type="submit">GENERATE RAPORT</button>
-    </form>
+
+
+    <main>
+        <!-- id od elementów formularza sobie znajdź w konsoli przeglądarki -->
+        <form method="POST" id="formContent">
+            {% csrf_token %}
+            <table id="formTable">
+                {{ form.as_table }}
+                <tr id="trButton">
+                    <th></th>
+                    <td>
+                        <button type="submit" id="formSubmit">Generate</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </main>
+
+
+
 {% endblock %}

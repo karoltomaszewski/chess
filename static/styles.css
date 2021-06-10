@@ -39,3 +39,13 @@ header a:hover{
     color: #a4b0be;
     transition: all 0.3s;
 }
+
+main{
+    background-color: #2f3542;
+    width: 94%;
+    padding: 10px 30px;
+    color: #dfe4ea;
+    border-radius: 0px 0px 10px 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
