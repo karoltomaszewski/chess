@@ -125,7 +125,7 @@ def user(request, username):
 
                 # openings
 
-                opening = f_opening(pgn[10].replace("\"", "").split("/")[-1][:-1].split("-")[0:6])
+                opening = f_opening(pgn[10].replace("\"", "").split("/")[-1][:-1].split("-")[0:4])
 
                 if opening not in list(openings.keys()):
                     openings[opening] = {

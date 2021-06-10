@@ -1,200 +1,270 @@
 def f_opening(open_name):
     openings = {
-        'Sicilian Defense': {
-            'color': 'black'
+        'Sicilian': {
+            'color': 'black',
+            'name': 'Sicilian Defense'
         },
         'Queens Gambit': {
-            'color': 'white'
+            'color': 'white',
+            'name': 'Queen\'s Gambit'
         },
         'Kings Gambit': {
-            'color': 'white'
+            'color': 'white',
+            'name': 'King\'s Gambit'
         },
         'Kings Indian Defense': {
-            'color': 'black'
+            'color': 'black',
+            'name': 'King\'s Indian Defense'
         },
-        'Italian Game': {
-            'color': 'white'
+        'Italian': {
+            'color': 'white',
+            'name': 'Italian Game'
         },
-        'Giuoco Piano Game': {
-            'color': 'black', #dziwne
-            'return': 'Italian Game'
+        'Giuoco': {
+            'color': 'white', #ostatecznie włoska
+            'name': 'Italian Game'
         },
-        'Ruy Lopez': {
-            'color': 'white'
+        'Ruy': {
+            'color': 'white',
+            'name': 'Ruy López Opening'
         },
-        'French Defense': {
-            'color': 'black'
+        'French': {
+            'color': 'black',
+            'name': 'French Defense'
         },
-        'Caro Kann Defense': {
-            'color': 'white'
+        'Caro': {
+            'color': 'white',
+            'name': 'Caro-Kann Defense'
         },
-        'Scandinavian Defense': {
-            'color': 'black'
+        'Scandinavian': {
+            'color': 'black',
+            'name': 'Scandinavian Defense'
         },
-        'English Opening': {
-            'color': 'white'
+        'English': {
+            'color': 'white',
+            'name': 'English Opening'
         },
-        'Bishops Opening': {
-            'color': 'white'
+        'Bishops': {
+            'color': 'white',
+            'name': 'Bishop\'s Opening'
         },
-        'Kings Fianchetto Opening': {
-            'color': 'white'
+        'Kings Fianchetto': {
+            'color': 'white',
+            'name': 'King\'s Fianchetto Opening'
         },
-        'Modern Defense': {
-            'color': 'black'
+        'Modern': {
+            'color': 'black',
+            'name': 'Modern Defense'
         },
-        'Alekhines Defense': {
-            'color': 'black'
+        'Alekhines': {
+            'color': 'black',
+            'name': 'Alekhine\'s Defense'
         },
-        'Petrovs Defense': {
-            'color': 'black'
+        'Petrovs': {
+            'color': 'black',
+            'name': 'Petrov\'s Defense'
         },
-        'Grunfeld Defense': {
-            'color': 'black'
+        'Grunfeld': {
+            'color': 'black',
+            'name': 'Grünfeld Defense'
         },
-        'Semi Slav Defense': {
-            'color': 'black'
+        'Semi': {
+            'color': 'black',
+            'name': 'Semi Slav Defense'
         },
         'Kings Indian Attack': {
-            'color': 'white'
+            'color': 'white',
+            'name': 'King\'s Indian Attack'
         },
-        'Nimzo Indian Defense': {
-            'color': 'black'
+        'London': {
+            'color': 'white',
+            'name': 'London System'
         },
-        'Benoni Defense': {
-            'color': 'black'
+        'Nimzo': {
+            'color': 'black',
+            'name': 'Nimzo-Indian Defense'
         },
-        'Scotch Game':{
-            'color': 'white'
+        'Benoni': {
+            'color': 'black',
+            'name': 'Benoni Defense'
         },
-        'Scotch Game...4.Nxd4': {
-            'color': 'white', #bo ostatecznie jako zwykły Scotch
-            'return': 'Scotch Game'
+        'Scotch':{
+            'color': 'white',
+            'name': 'Scotch Game'
         },
-        'Kings Pawn Opening': {
-            'color': 'white'
+        'Kings Pawn': {
+            'color': 'white',
+            'name': 'King\'s Pawn Opening'
         },
-        'Queens Pawn Opening': {
-            'color': 'white'
+        'Queens Pawn': {
+            'color': 'white',
+            'name': 'Queen\'s Pawn Opening'
         },
-        'Three Knights Opening': {
-            'color': 'white'
+        'Three': {
+            'color': 'white',
+            'name': 'Three Knights Opening'
         },
-        'Four Knights Game': {
-            'color': 'black'
+        'Four': {
+            'color': 'black',
+            'name': 'Four Knights Game'
         },
-        'Slav Defense': {
-            'color': 'black'
+        'Slav': {
+            'color': 'black',
+            'name': 'Slav Defense'
         },
-        'Dutch Defense': {
-            'color': 'black'
+        'Dutch': {
+            'color': 'black',
+            'name': 'Dutch Defense'
         },
-        'Vant Kruijs': {
-            'color': 'white'
+        'Vant': {
+            'color': 'white',
+            'name': 'Vant Kruijs'
         },
-        'Polish Opening': {
-            'color': 'white'
+        'Polish': {
+            'color': 'white',
+            'name': 'Polish Opening'
         },
-        'Reti Opening': {
-            'color': 'white'
+        'Reti': {
+            'color': 'white',
+            'name': 'Reti Opening'
         },
         'Nimzowitsch Defense': {
-            'color': 'black'
+            'color': 'black',
+            'name': 'Nimzowitsch Defense'
         },
-        'Nimzowitsch Larsen Attack': {
-            'color': 'white'
+        'Nimzowitsch Larsen': {
+            'color': 'white',
+            'name': 'Nimzowitsch-Larsen Attack'
         },
-        'Indian Game': {
-            'color': 'black'
+        'Indian': {
+            'color': 'black',
+            'name': 'Indian Game'
         },
-        'Birds Opening': {
-            'color': 'white'
+        'Birds': {
+            'color': 'white',
+            'name': 'Bird\'s Opening'
         },
-        'Barnes Opening': {
-            'color': 'white'
+        'Barnes': {
+            'color': 'white',
+            'name': 'Barnes Opening'
         },
-        'Richter Veresov Attack': {
-            'color': 'white'
+        'Richter': {
+            'color': 'white',
+            'name': 'Richter-Veresov Attack'
         },
-        'Old Indian Defense': {
-            'color': 'black'
+        'Old Indian': {
+            'color': 'black',
+            'name': 'Old Indian Defense'
         },
-        'Mieses Opening': {
-            'color': 'white'
+        'Mieses': {
+            'color': 'white',
+            'name': 'Mieses Opening'
         },
-        'Englund Gambit': {
-            'color': 'black'
+        'Englund': {
+            'color': 'black',
+            'name': 'Englund Gambit'
         },
-        'Ponziani Opening': {
-            'color': 'white'
+        'Ponziani': {
+            'color': 'white',
+            'name': 'Ponziani Opening'
         },
-        'Trompowsky Attack': {
-            'color': 'white'
+        'Trompowsky': {
+            'color': 'white',
+            'name': 'Trompowsky Attack'
         },
-        'Vienna Game': {
-            'color': 'white'
+        'Vienna': {
+            'color': 'white',
+            'name': 'Vienna Game'
         },
-        'Center Game': {
-            'color': 'white'
+        'Center': {
+            'color': 'white',
+            'name': 'Center Game'
         },
-        'Van Geet Opening': {
-            'color': 'white'
+        'Van': {
+            'color': 'white',
+            'name': 'Van Geet Opening'
         },
-        'Philidor Defense': {
-            'color': 'black'
+        'Philidor': {
+            'color': 'black',
+            'name': 'Philidor Defense'
         },
-        'Pirc Defense': {
-            'color': 'black'
+        'Pirc': {
+            'color': 'black',
+            'name': 'Pirc Defense'
         },
-        'Old Benoni Defense': {
-            'color': 'white' #???
+        'Old Benoni': {
+            'color': 'white',
+            'name': 'Old Benoni Defense'
         },
-        'Grob Opening': {
-            'color': 'white'
+        'Grob': {
+            'color': 'white',
+            'name': 'Grob Opening'
         },
-        'Colle System': {
-            'color': 'white'
+        'Colle': {
+            'color': 'white',
+            'name': 'Colle System'
         },
-        'Torre Attack': {
-            'color': 'white'
+        'Torre': {
+            'color': 'white',
+            'name': 'Torre Attack'
         },
-        'Tarrasch Defense': {
-            'color': 'black'
+        'Tarrasch': {
+            'color': 'black',
+            'name': 'Tarrasch Defense'
         },
-        'Portuguese Opening': {
-            'color': 'white'
+        'Portuguese': {
+            'color': 'white',
+            'name': 'Portuguese Opening'
         },
-        'Sodium Attack': {
-            'color': 'white'
+        'Sodium': {
+            'color': 'white',
+            'name': 'Sodium Attack'
         },
-        'Ware Opening': {
-            'color': 'white'
+        'Ware': {
+            'color': 'white',
+            'name': 'Ware Opening'
         },
-        'Kadas Opening': {
-            'color': 'white'
+        'Kadas': {
+            'color': 'white',
+            'name': 'Kadas Opening'
         },
-        'Saragossa Opening': {
-            'color': 'white'
+        'Saragossa': {
+            'color': 'white',
+            'name': 'Saragossa Opening'
         },
-        'Clemenz Opening': {
-            'color': 'white'
+        'Wade': {
+            'color': 'black',
+            'name': 'Wade Defense'
         },
-        'Amar Opening': {
-            'color': 'white'
+        'Neo': {
+            'color': 'black',
+            'name': 'Neo-Grünfeld Defense'
         },
-        'Anderssen Opening': {
-            'color': 'white'
+        'Benko': {
+            'color': 'black',
+            'name': 'Benko Gambit'
+        },
+        'Clemenz': {
+            'color': 'white',
+            'name': 'Clemenz Opening'
+        },
+        'Amar': {
+            'color': 'white',
+            'name': 'Amar Opening'
+        },
+        'Anderssen': {
+            'color': 'white',
+            'name': 'Anderssen Opening'
         }
     }
 
     openings_list = list(openings.keys())
     open_name_conv = open_name[0]
 
-    for i in range(1, 3):
+    for i in range(1, 4):
         if open_name_conv in openings_list:
-            if 'return' in openings[open_name_conv].keys():
-                return openings[open_name_conv]["return"]
-            return open_name_conv
+            return openings[open_name_conv]["name"]
+    
         open_name_conv += " "+open_name[i]
 
     return "NOT IN BASE"
