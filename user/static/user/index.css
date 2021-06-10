@@ -21,6 +21,7 @@ td{
     padding:0px;
 }
 label[for=id_username]{
+    font-size:21px;
 }
 #trButton{
 }

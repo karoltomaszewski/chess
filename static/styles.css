@@ -16,7 +16,15 @@ body{
     justify-content: center;
     align-items: center;
 }
-
+#chessFrogs{
+    font-size: xx-large;
+    font-weight: bold;
+    letter-spacing: 0.6px;
+    margin: 5px;
+    margin-left: 30px;
+    color: #f1f2f6;
+    text-decoration: none;
+}
 header{
     background-color: #2f3542;
     color: #f1f2f6;
@@ -25,14 +33,9 @@ header{
 }
 
 header h1{
-    letter-spacing: 0.6px;
-    margin: 5px;
-    margin-left: 30px;
 }
 
 header a{
-    color: #f1f2f6;
-    text-decoration: none;
 }
 
 header a:hover{

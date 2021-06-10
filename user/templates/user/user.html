@@ -12,22 +12,22 @@
 
 {% block content %}
     <main>
-            <div id="username">
-                <h1>{{ username }}</h1>
-            </div>
-
-            {% if tags|length > 0 %}
-                <section id="tags">
-                    {% for tag in tags %}
-                        <div class="tag {{tag.type}}">
-                            {{tag.title}}
-                        </div>
-                    {% endfor %}
-                </section>
-            {% endif %}
 
             <section id="top">
-                
+                <div id="username">
+                    <h1>{{ username }}</h1>
+                </div>
+
+                {% if tags|length > 0 %}
+                    <div id="tags">
+                        {% for tag in tags %}
+                            <div class="tag {{tag.type}}">
+                                {{tag.title}}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <!--
                 <div id="results">
 
                     <div class="ratingbox">
@@ -62,13 +62,20 @@
                         <span class="time">{{time.percentage_time}}%</span>
                     <div>
                 </div>
+                -->
             </section>
     
 
             <div class="menuAll">
                 <div class="colorsMenu">
                     <div class="Menu">
-                    <button type="button" class="otworzMenu">White</button>
+                    <button type="button" class="otworzMenu">White
+                        <div class="otworzMenuResults">
+                            <a class="wins">{{ overall_results.white.wins }}</a> - 
+                            <a class="draws">{{ overall_results.white.draws }}</a> - 
+                            <a class="loses">{{ overall_results.white.loses }}</a>
+                        </div>
+                    </button>
                         <section id="center" class="contentMenu">
                             <div class="openings">
                                 <table class="openingsTable">
@@ -115,7 +122,13 @@
                     </div>
                     
                     <div class="Menu">
-                    <button type="button" class="otworzMenu">Black</button>
+                    <button type="button" class="otworzMenu">Black
+                        <div class="otworzMenuResults">
+                            <a class="wins">{{ overall_results.black.wins }}</a> - 
+                            <a class="draws">{{ overall_results.black.draws }}</a> - 
+                            <a class="loses">{{ overall_results.black.loses }}</a>
+                        </div>
+                    </button>
                         <section id="center" class="contentMenu">
                             <div class="openings">
                                 <table class="openingsTable">
@@ -131,7 +144,7 @@
                                         <th class="loses"> 
                                             L
                                         </th>
-                                        <th class="win%"> 
+                                        <th class="win%" title="TEST"> 
                                             Win%
                                         </th>
                                     </tr>
@@ -162,7 +175,41 @@
                     </div>
                 </div>
 
-                <div class="statsMenu"> 
+                <div class="statsMenu">
+                    <table id="statsMenuTable">
+                        <tr>
+                            <th class="statsMenuTableHeader">
+                            BULLET
+                            </th>
+                            <td class="statsMenuTableTd">
+                                <a>{{ ratings.bullet_rating }}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="statsMenuTableHeader">
+                            BLITZ
+                            </th>
+                            <td class="statsMenuTableTd">
+                                <a>{{ ratings.blitz_rating }}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="statsMenuTableHeader">
+                            RAPID
+                            </th>
+                            <td class="statsMenuTableTd">
+                                <a>{{ ratings.rapid_rating }}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="statsMenuTableHeader">
+                            TIME USAGE
+                            </th>
+                            <td class="statsMenuTableTd">
+                                <a class="time">{{time.percentage_time}}%</a>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
 
